@@ -1,6 +1,6 @@
-import React from "react";
+import React from "react"
 
-function SearchBar() {
+function SearchBar({ handleNameSort, handlePriceSort }) {
   return (
     <div>
       <strong>Sort by:</strong>
@@ -10,7 +10,7 @@ function SearchBar() {
           value="Alphabetically"
           name="sort"
           checked={null}
-          onChange={null}
+          onChange={handleNameSort}
         />
         Alphabetically
       </label>
@@ -20,7 +20,7 @@ function SearchBar() {
           value="Price"
           name="sort"
           checked={null}
-          onChange={null}
+          onChange={handlePriceSort}
         />
         Price
       </label>
@@ -34,7 +34,7 @@ function SearchBar() {
         </select>
       </label>
     </div>
-  );
+  )
 }
 
-export default SearchBar;
+export default SearchBar

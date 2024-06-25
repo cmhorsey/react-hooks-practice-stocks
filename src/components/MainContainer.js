@@ -19,6 +19,20 @@ function MainContainer() {
     setPortfolioStocks(filteredStocks)
   }
 
+  const sortedNameStocks = [...stocks].sort((a, b) =>
+    a.name.localeCompare(b.name)
+  )
+
+  function handleNameSort() {
+    setStocks(sortedNameStocks)
+  }
+
+  const sortedPriceStocks = [...stocks].sort((a, b) => a.price - b.price)
+
+  function handlePriceSort() {
+    setStocks(sortedPriceStocks)
+  }
+
   useEffect(() => {
     fetch("http://localhost:3001/stocks")
       .then((response) => response.json())
@@ -27,7 +41,10 @@ function MainContainer() {
 
   return (
     <div>
-      <SearchBar />
+      <SearchBar
+        handleNameSort={handleNameSort}
+        handlePriceSort={handlePriceSort}
+      />
       <div className="row">
         <div className="col-8">
           <StockContainer
