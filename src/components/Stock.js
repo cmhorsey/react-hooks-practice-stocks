@@ -6,13 +6,7 @@ function Stock({ stock, handleBuy, handleDelete }) {
   return (
     <div>
       <div
-        onClick={() => {
-          if (handleBuy) {
-            handleBuy(stock)
-          } else {
-            handleDelete(stock)
-          }
-        }}
+        onClick={() => (handleBuy ? handleBuy(stock) : handleDelete(stock))}
         className="card"
       >
         <div className="card-body">
