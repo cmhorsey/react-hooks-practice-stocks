@@ -9,13 +9,15 @@ function MainContainer() {
   const [portfolioStocks, setPortfolioStocks] = useState([])
 
   function handleBuy(stock) {
-    console.log(stock)
     setPortfolioStocks([...portfolioStocks, stock])
   }
-  console.log(portfolioStocks)
 
-  //set empty array, on click push stock into array
-  //pass array back down to portfolio container
+  function handleDelete(deletedStock) {
+    const filteredStocks = portfolioStocks.filter(
+      (stock) => stock.id !== deletedStock.id
+    )
+    setPortfolioStocks(filteredStocks)
+  }
 
   useEffect(() => {
     fetch("http://localhost:3001/stocks")
@@ -28,10 +30,17 @@ function MainContainer() {
       <SearchBar />
       <div className="row">
         <div className="col-8">
-          <StockContainer stocks={stocks} handleBuy={handleBuy} />
+          <StockContainer
+            stocks={stocks}
+            handleBuy={handleBuy}
+            handleDelete={handleDelete}
+          />
         </div>
         <div className="col-4">
-          <PortfolioContainer portfolioStocks={portfolioStocks} />
+          <PortfolioContainer
+            portfolioStocks={portfolioStocks}
+            handleDelete={handleDelete}
+          />
         </div>
       </div>
     </div>
