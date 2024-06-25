@@ -6,9 +6,16 @@ import SearchBar from "./SearchBar"
 function MainContainer() {
   const [fetchTrigger, setFetchTrigger] = useState(false)
   const [stocks, setStocks] = useState([])
-  //Set state with fetch
-  //Set trigger
-  //pass to Stock Container
+  const [portfolioStocks, setPortfolioStocks] = useState([])
+
+  function handleBuy(stock) {
+    console.log(stock)
+    setPortfolioStocks([...portfolioStocks, stock])
+  }
+  console.log(portfolioStocks)
+
+  //set empty array, on click push stock into array
+  //pass array back down to portfolio container
 
   useEffect(() => {
     fetch("http://localhost:3001/stocks")
@@ -21,10 +28,10 @@ function MainContainer() {
       <SearchBar />
       <div className="row">
         <div className="col-8">
-          <StockContainer stocks={stocks} />
+          <StockContainer stocks={stocks} handleBuy={handleBuy} />
         </div>
         <div className="col-4">
-          <PortfolioContainer />
+          <PortfolioContainer portfolioStocks={portfolioStocks} />
         </div>
       </div>
     </div>
